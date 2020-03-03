@@ -47,10 +47,8 @@ void loop()
   //Serial.println (buttonState);
   //Serial.print ("flash=");
   //Serial.println (flash);
+  
 }
-
-
-// ----- button 1 callback functions
 
 
 //======================================================================================
@@ -63,25 +61,42 @@ void click1()
   buttonState = !buttonState;
   Serial.print("buttonState = ");
   Serial.println (buttonState);
-  //Serial.println(buttonState);
-  // Now, make the LED flash
+
   digitalWrite(ledPinGreen,buttonState); // turn LED ON or OFF
 }
 
 //======================================================================================
 
 void doubleclick1()
-// This function will be called when the button1 was pressed 2 times in a short timeframe.
+// This function will be called when the button1 was pressed 2 times in a short time frame.
 {
 // change state of flash and print
 
   Serial.println("Button 1 double clicked");
-  flash = !flash;
+  
+  if flash == 0 then
+    digitalWrite(ledPinGreen,HIGH);
+  else
+    digitalWrite(ledPinGreen,flash);
+    flash = !flash;
+  
   Serial.print("flash = ");
   Serial.println(flash);
-  digitalWrite(ledPinGreen,buttonState);
-}
 
+  if flash==HIGH
+  {
+   flashing()
+  else
+    digitalWrite(ledPinGreen,LOW);
+  }
+
+//======================================================================================
+
+void flashing()
+{
+digitalWrite(ledPinGreen,HIGH);
+digitalWrite(ledPinGreen,LOW);
+}
   
 //======================================================================================  
 
